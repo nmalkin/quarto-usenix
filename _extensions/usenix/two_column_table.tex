@@ -1,0 +1,67 @@
+% pandoc generates tables using longtable, but that doesn't work in two-column layouts.
+% This is a known issue for pandoc: https://github.com/jgm/pandoc/issues/1023
+% and Quarto: https://github.com/quarto-dev/quarto-cli/discussions/2786#discussioncomment-3853259
+
+
+% The following two solutions work if there are no captions, but otherwise produce ! LaTeX Error: \caption outside float.
+
+% \renewenvironment{longtable}{\begin{center}\begin{tabular}}{\end{tabular}\end{center}}
+% \def\endhead{}
+% \renewcommand{\toprule}[2]{\hline}
+% \renewcommand{\midrule}[2]{\hline}
+% \renewcommand{\bottomrule}[2]{\hline}
+
+% \usepackage{supertabular}
+% \let\longtable\supertabular
+% \let\endlongtable\endsupertabular
+% \let\endhead\relax
+
+% The following solution is via https://tex.stackexchange.com/a/224096
+% It works if all tables are single-column, but breaks if you try to have a two-column table (which Quarto does by putting it inside a \table* environment)
+% This is also how the official Quarto templates currently deal with two-column tables
+% e.g., see https://github.com/quarto-journals/elsevier/blob/88f534be77bc74653a0ea0a5bd67d5ea47fc11b2/_extensions/elsevier/partials/_two-column-longtable.tex
+
+\makeatletter
+\let\oldlt\longtable
+\let\endoldlt\endlongtable
+\def\longtable{\@ifnextchar[\longtable@i \longtable@ii}
+\def\longtable@i[#1]{\begin{figure}[ht]
+\onecolumn
+\begin{minipage}{0.5\textwidth}
+\oldlt[#1]
+}
+\def\longtable@ii{\begin{figure}[ht]
+\onecolumn
+\begin{minipage}{0.5\textwidth}
+\oldlt
+}
+\def\endlongtable{\endoldlt
+\end{minipage}
+\twocolumn
+\end{figure}}
+\makeatother
+
+% The following is the same code as immediately above, but it makes the table as wide as the page.
+% It may be possible to make a more clever macro that checks whether it's inside a table* using \@currenvir and then switches between the two solutions.
+
+% \makeatletter
+% \let\oldlt\longtable
+% \let\endoldlt\endlongtable
+% \def\longtable{\@ifnextchar[\longtable@i \longtable@ii}
+% \def\longtable@i[#1]{\begin{figure*}[t]
+% \onecolumn
+% \begin{minipage}{0.9\textwidth}
+% \oldlt[#1]
+% }
+% \def\longtable@ii{\begin{figure*}[t]
+% \onecolumn
+% \begin{minipage}{0.9\textwidth}
+% \oldlt
+% }
+% \def\endlongtable{\endoldlt
+% \end{minipage}
+% \twocolumn
+% \end{figure*}}
+% \makeatother
+
+%%%%%% END of custom code to handle longtable

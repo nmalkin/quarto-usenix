@@ -20,7 +20,9 @@ contributes:
       hyperrefoptions:
           - hidelinks=false
           - colorlinks=true
-      include-in-header: header.tex
+      include-in-header:
+        - header.tex
+        - two_column_table.tex
       template-partials:
         - title.tex
       format-resources:
