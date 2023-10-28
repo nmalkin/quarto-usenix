@@ -5,6 +5,7 @@ _freeze
 _output
 *_files
 *.html
+/*.sty
 
 
 # via https://github.com/github/gitignore/blob/main/Python.gitignore
