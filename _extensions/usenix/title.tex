@@ -1,0 +1,38 @@
+
+%don't want date printed
+\date{}
+
+% make title bold and 14 pt font (Latex default is non-bold, 16 pt)
+$if(title)$
+\title{{\Large \bf $title$}}
+$endif$
+
+\author{
+$for(by-author)$
+  {\rm $by-author.name.literal$} \\
+  $if(by-author.affiliations)$
+    $for(by-author.affiliations)$
+        $if(by-author.affiliations.name)$
+          $by-author.affiliations.name$
+        $endif$
+        $if(by-author.affiliations.address)$
+          \\ $by-author.affiliations.address$
+        $endif$
+        $if(by-author.affiliations.city)$
+          \\ $by-author.affiliations.city$
+        $endif$
+        $if(by-author.affiliations.state)$
+          , $by-author.affiliations.state$
+        $endif$
+        $if(by-author.affiliations.country)$
+          , $by-author.affiliations.country$
+        $endif$
+        $if(by-author.affiliations.postal-code)$
+          $by-author.affiliations.postal-code$
+        $endif$
+    $endfor$
+  $endif$
+$sep$
+\and
+$endfor$
+}
