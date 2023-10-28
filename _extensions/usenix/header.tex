@@ -4,6 +4,18 @@
 \setlength{\parindent}{1em}
 \setlength{\parskip}{0pt plus 1pt}
 
+% (quarto-usenix) Restoring parskip to zero messes up the abstract spacing. This fixes it.
+\let\oldabstract\abstract
+\let\oldendabstract\endabstract
+\makeatletter
+\renewenvironment{abstract}
+{
+    \oldabstract
+    \vspace{8pt}
+    \oldendabstract
+}
+\makeatother
+
 % (quarto-usenix) Restore default paragraph spacing (pandoc makes them "free-standing")
 \makeatletter
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
