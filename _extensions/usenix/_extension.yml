@@ -6,9 +6,12 @@ contributes:
   formats:
     common:
       toc: false
+      execute: # Doesn't seem to work? Needs to be (re)defined in document
+        echo: false
+      link-citations: true
     pdf:
       pdf-engine: pdflatex
-      keep-tex: true
+      keep-tex: false
       documentclass: article
       classoption: [letterpaper, twocolumn, 10pt]
       number-sections: true
@@ -22,6 +25,8 @@ contributes:
         - title.tex
       format-resources:
         - usenix-2020-09.sty
+      cite-method: natbib
+      biblio-style: plain
     html:
       css: styles.css
 
