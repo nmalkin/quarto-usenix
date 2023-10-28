@@ -3,6 +3,8 @@ title: "Formatting Submissions for a USENIX Conference: An (Incomplete) Example"
 format:
   usenix-pdf:
     keep-tex: true  
+    include-in-header:
+      - custom_header.tex
   usenix-html: default
 author:
   - name: Your N. Here
