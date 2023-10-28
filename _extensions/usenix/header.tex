@@ -6,3 +6,15 @@
 
 % inlined bib file
 \usepackage{filecontents}
+
+% (quarto-usenix) pandoc separates paragraphs with whitespace rather than indents. Restore the default behavior
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0pt plus 1pt}
+
+% (quarto-usenix) Restore default paragraph spacing (pandoc makes them "free-standing")
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                      {3.25ex \@plus1ex \@minus.2ex}%
+                                      {-1em}%
+                                      {\normalfont\normalsize\bfseries}}
+\makeatother
