@@ -4,8 +4,16 @@ This is a [journal format](https://quarto.org/docs/journals/) for [Quarto](https
 
 ## WARNING: read before you use this template
 
-Please be aware that, if you compare the output of this template with the [USENIX sample PDF file](https://www.usenix.org/sites/default/files/usenix-2020-09.pdf), you'll find that there are subtle differences, such as link colors, spacing around environments, URL fonts, etc.
+### Known differences from template
+Please be aware that, if you compare the output of this template with the [USENIX sample PDF file](https://www.usenix.org/sites/default/files/usenix-2020-09.pdf), you'll find that there are subtle differences.
 (Pull requests with fixes are welcome!)
+
+- Less spacing around figure captions
+- Less spacing around `verbatim` environment
+- Internal links (citations, sections/figures) are blue instead of red and green, respectively
+  - This doesn't seem to be actually defined in the template, however.
+- URLs are colored a slightly different shade of blue.
+- URLs use a different (non-monospaced) font
 
 Additionally:
 
@@ -26,7 +34,7 @@ However:
 
 - I also encountered an odd **bug with longtable where entire pages would be omitted from the PDF**.
   I really suspect this is a problem with longtable (not this template, the workaround, Quarto, or pandoc), but I didn't track it down or confirm it with others.
-  However, my only solution was to update the LaTeX that was output by Quarto, replacing longtables with regular tables.
+  However, my only solution was to update the LaTeX that was output by Quarto, [replacing longtables with regular tables](https://gist.github.com/nmalkin/55e7aaf7311cc3d067fd1aa3a35f00b4).
 
 Therefore, **if you plan to have tables in your paper, think twice before using this template** (or any Pandoc-based workflow, assuming you're dealing with two-column articles.)
 
